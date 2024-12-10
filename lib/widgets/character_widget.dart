@@ -8,14 +8,69 @@ class CharacterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO 0: Use basic widgets you already know to create this character widget/cell.
-    // Some useful tips:
-    // * Don't delete Container widget, add all your widgets inside. Remember Container only
-    //   has one child, but your first step should probably be adding a Row as that child ;)
-    // * Load images with Image.asset(character.image, ...
-    // * In Container widget, feel free to use decoration:
-    //   BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.all(Radius.circular(20.0)))
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white, 
+        borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3), 
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.all(12.0),
+      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          
+          Flexible(
+            flex: 3, 
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15.0), 
+              child: AspectRatio(
+                aspectRatio: 1, 
+                child: Image.asset(
+                  character.image, 
+                  fit: BoxFit.contain, 
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 15.0),
 
-    return Container();
+          Flexible(
+            flex: 5, 
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  character.name,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF3A3A3A), 
+                    fontFamily: 'Roboto', 
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  character.jobTitle,
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    color: Color(0xFF616161), 
+                    fontFamily: 'OpenSans', 
+                    height: 1.5, 
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
